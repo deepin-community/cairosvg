@@ -1,0 +1,13 @@
+#!/bin/sh
+
+set -e
+
+if [ ! "$2" = "" ]; then
+  if [ "$1" = "upgrade" ] || [ "$1" = "install" ]; then
+    if dpkg --compare-versions $2 lt 2; then
+      update-alternatives --remove-all cairosvg
+    fi
+  fi
+fi
+
+#DEBHELPER#
